@@ -1,0 +1,5 @@
+.env
+.venv
+
+docRAG.ipynb
+test.py

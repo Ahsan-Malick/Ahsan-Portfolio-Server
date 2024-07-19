@@ -1,0 +1,7 @@
+langchain-community
+langchain
+langchain-openai
+faiss-cpu
+python-dotenv
+huggingface-hub
+pypdf
