@@ -81,3 +81,7 @@ def generator():
     final_response = jsonify({"text": response})
     print(final_response)
     return final_response
+
+@app.route("/hello")
+def hello_world():
+    return "hello world"
