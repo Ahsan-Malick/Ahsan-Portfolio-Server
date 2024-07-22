@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
 from openai import OpenAI
-from dotenv import load_dotenv
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.vectorstores import FAISS
@@ -19,9 +18,6 @@ from pypdf import PdfReader
 app = Flask(__name__)
 CORS(app)
 
-load_dotenv()
-# open_ai_key = os.environ.get("OPENAI_API_KEY")
-# hf_token = os.environ.get("HF_TOKEN")
 
 
 @app.route("/generator", methods=['POST'])
@@ -47,15 +43,6 @@ def generator():
         model_name='sentence-transformers/all-MiniLM-L6-v2')
     vectorstore = FAISS.from_texts(texts=all_splits, embedding=embeddings)
 
-    # llm = HuggingFaceEndpoint(
-    #     repo_id="mistralai/Mistral-7B-Instruct-v0.3",
-    #     task="text-generation",
-    #     max_new_token=128,
-    #     temperature=0.9,
-    #     do_sample=False,
-    #     repetition_penalty=1.03,
-    #     huggingfacehub_api_token=hf_token,
-    # )
 
     template = """Your are a helpful assistant of Ahsan Javed. If someone greets then you should greet as well.
     Try to answer consise and to the point, you should answer based on following context:
