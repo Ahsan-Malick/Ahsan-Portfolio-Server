@@ -1,13 +1,9 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
-from openai import OpenAI
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.vectorstores import FAISS
 from langchain_openai.chat_models import ChatOpenAI
-from langchain_openai.embeddings import OpenAIEmbeddings
-from langchain_huggingface import HuggingFaceEndpoint
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
@@ -66,7 +62,6 @@ def generator():
     response = qa_chain.invoke(f"{human_msg}")
     # response = op.split("Answer: ", 1)[1]
     final_response = jsonify({"text": response})
-    print(final_response)
     return final_response
 
 @app.route("/hello")
